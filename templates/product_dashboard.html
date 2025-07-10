@@ -1,0 +1,38 @@
+ {% load static%}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Product Dashboard</title>
+</head>
+<header>
+<h1>Discover the Best in Skincare</h1>
+</header>
+<body>
+<form method="get" class="product-form">
+  {% csrf_token %}
+  <label for="product" class="pro_lbl">Choose a product category:</label>
+  <select name="product" id="product" class="pro_cat_dp">
+    <option value="">-- Select --</option>
+    {% for category in product_categories %}
+      <option value="{{ category }}" {% if selected_product == category %}selected{% endif %}>
+        {{ category|title }}
+      </option>
+    {% endfor %}
+  </select>
+  <button type="submit">Submit</button>
+
+{% if selected_product %}
+  <h3>{{ selected_product|title }} Analysis</h3>
+
+  {% if selected_image %}
+     <img src="{% static selected_image %}" alt="Dashboard for {{ selected_product }}" width="1000">
+  {% else %}
+    <p>No dashboard image found for this category.</p>
+  {% endif %}
+{% endif %}
+</form>
+</body>
+</html>

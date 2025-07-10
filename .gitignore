@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+*.sqlite3
+*.db
+.env
+SkinCareEnv/
+staticfiles/
+*.pbit
+*.pbix
+
